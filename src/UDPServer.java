@@ -8,8 +8,9 @@ import java.util.Scanner;
  * Subject: ***********************
  *********************************/
 
-class UDPServer
+class UDPServer extends Thread
 {
+
     public static void main(String [] args) throws IOException {
 
         DatagramSocket datagramSocket = new DatagramSocket(80);
@@ -21,11 +22,13 @@ class UDPServer
 
             datagramSocket.receive(packet);
 
-            System.out.println(new String(packet.getData(), packet.getOffset(), packet.getLength()));
+//            System.out.println(new String(packet.getData(), packet.getOffset(), packet.getLength()));
+//            System.out.print("Server message: ");
+//            String message = input.nextLine();
+//            System.out.println(message);
 
-            System.out.print("Server message: ");
-            String message = input.nextLine();
-            System.out.println(message);
+
+
 
             byte[] bufferN = message.getBytes();
             InetAddress receiverAddress = InetAddress.getLocalHost();
@@ -35,6 +38,5 @@ class UDPServer
 
             datagramSocket.send(packet1);
         }
-
     }
 }

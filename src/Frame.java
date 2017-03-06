@@ -9,34 +9,46 @@ import java.awt.event.ActionListener;
  * Subject: ***********************
  *********************************/
 public class Frame implements ActionListener{
-
+    JFrame frame = new JFrame();
+    JLabel inputLabel = new JLabel();
+    JLabel userText = new JLabel();
+    JTextArea inputArea = new JTextArea();
+    JPanel panel = new JPanel();
+    JPanel messagePanel = new JPanel();
+    JPanel userPanel = new JPanel();
+    JButton submit = new JButton("Submit");
+    JButton enter = new JButton("Enter");
 
     Frame(){
-        JFrame frame = new JFrame();
-        JLabel inputLabel = new JLabel();
-        JLabel messageText = new JLabel();
-        JTextArea inputArea = new JTextArea();
-        JPanel panel = new JPanel(new GridLayout());
 
-        panel.add(new JLabel("Welcome please enter a new message"));
+        panel.add(new JLabel("Welcome please enter your username"));
 
 
+        String username = inputArea.getText();
 
-
-        String message = inputArea.getText();
-        messageText.setText(message);
+        UDPCLient client = new UDPClient(username);
 
         panel.add(inputArea);
         panel.add(messageText);
         frame.add(panel);
+        frame.add(messagePanel);
+        frame.add(userPanel);
+
+        panel.setVisible(true);
+
+        messagePanel.setVisible(false);
+        userPanel.setVisible(false);
         frame.setSize(400, 400);
         frame.setLocation(400, 150);
         frame.setVisible(true);
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if(e.getAction=="Submit"){
+            userText.setText(username);
+        }
 
     }
 }

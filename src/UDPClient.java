@@ -19,9 +19,7 @@ class UDPClient
         Scanner input = new Scanner(System.in);
 
         while(true) {
-            System.out.print("Client message: ");
-            String message = input.nextLine();
-            System.out.println(message);
+
 
             byte[] buffer = message.getBytes();
             InetAddress receiverAddress = InetAddress.getLocalHost();
@@ -37,6 +35,11 @@ class UDPClient
 
             System.out.println(new String(packet1.getData(), packet1.getOffset(), packet1.getLength()));
         }
+    }
 
+    public void setClient(String name){
+
+        User user = new User();
+        user.setUsername(name);
     }
 }
