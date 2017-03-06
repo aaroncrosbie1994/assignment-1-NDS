@@ -12,35 +12,35 @@ import java.util.Scanner;
 
 class UDPClient
 {
-    static String message = "";
-    public static void main(String [] args) throws IOException {
+    static String message;
+
+    public void main(String [] args) throws IOException {
 
         DatagramSocket datagramSocket = new DatagramSocket(70);
-
+        Frame frame = new Frame();
         while(true) {
             //Message input from Frame class by the client to be sent to the pool
 
+            if(message != null) {
+                byte[] buffer = message.getBytes();
+                InetAddress receiverAddress = InetAddress.getLocalHost();
 
-            byte[] buffer = message.getBytes();
-            InetAddress receiverAddress = InetAddress.getLocalHost();
+                DatagramPacket packet = new DatagramPacket(buffer, buffer.length, receiverAddress, 80);
 
-            DatagramPacket packet = new DatagramPacket(buffer, buffer.length, receiverAddress, 80);
+                datagramSocket.send(packet);
 
-            datagramSocket.send(packet);
+                byte[] bufferN = new byte[255];
+                DatagramPacket packet1 = new DatagramPacket(bufferN, bufferN.length);
 
-            byte[] bufferN = new byte[10];
-            DatagramPacket packet1 = new DatagramPacket(bufferN, bufferN.length);
+                datagramSocket.receive(packet1);
 
-            datagramSocket.receive(packet1);
-
-            System.out.println(new String(packet1.getData(), packet1.getOffset(), packet1.getLength()));
+                System.out.println(new String(packet1.getData(), packet1.getOffset(), packet1.getLength()));
+            }
         }
     }
 
     public void setClient(String name){
-
         User user = new User(name);
-        user.setUsername(name);
     }
 
     public void getMessage(String message){

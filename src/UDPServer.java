@@ -10,33 +10,30 @@ import java.util.Scanner;
 
 class UDPServer extends Thread
 {
-
     public static void main(String [] args) throws IOException {
 
         DatagramSocket datagramSocket = new DatagramSocket(80);
-        Scanner input = new Scanner(System.in);
 
         while (true) {
-            byte[] buffer = new byte[10];
+            byte[] buffer = new byte[255];
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-
             datagramSocket.receive(packet);
 
-//            System.out.println(new String(packet.getData(), packet.getOffset(), packet.getLength()));
-//            System.out.print("Server message: ");
-//            String message = input.nextLine();
-//            System.out.println(message);
+            String message = new String(packet.getData(), packet.getOffset(), packet.getLength());
 
-
-
-
+            displayMessage(message);
             byte[] bufferN = message.getBytes();
             InetAddress receiverAddress = InetAddress.getLocalHost();
 
-            DatagramPacket packet1 = new DatagramPacket(
-                    bufferN, bufferN.length, receiverAddress, 70);
-
-            datagramSocket.send(packet1);
+//            DatagramPacket packet1 = new DatagramPacket(
+//                    bufferN, bufferN.length, receiverAddress, 70);
+//
+//            datagramSocket.send(packet1);
         }
+    }
+
+    public static void displayMessage(String message){
+        MessageHandler msgH = new MessageHandler();
+        msgH.sendMessage(message);
     }
 }

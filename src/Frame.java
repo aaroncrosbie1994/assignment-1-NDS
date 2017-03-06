@@ -9,16 +9,18 @@ import java.awt.event.ActionListener;
  * Subject: ***********************
  *********************************/
 
-public class Frame implements ActionListener{
+public class Frame extends JFrame implements ActionListener{
 
-    JFrame frame = new JFrame();
+
+    JPanel panel = new JPanel();
+    JPanel messagePanel = new JPanel();
+    JPanel userPanel = new JPanel();
+
     JLabel inputLabel = new JLabel();
     JLabel userText = new JLabel();
     JTextArea inputArea = new JTextArea();
     JTextArea displayArea = new JTextArea();
-    JPanel panel = new JPanel();
-    JPanel messagePanel = new JPanel();
-    JPanel userPanel = new JPanel();
+
     JButton submit = new JButton("Submit");
     JButton enter = new JButton("Enter");
 
@@ -36,17 +38,17 @@ public class Frame implements ActionListener{
 
         panel.add(displayArea);
         panel.add(inputArea);
-        frame.add(panel);
-        frame.add(messagePanel);
-        frame.add(userPanel);
+        add(panel);
+        add(messagePanel);
+        add(userPanel);
 
         panel.setVisible(true);
 
         messagePanel.setVisible(false);
         userPanel.setVisible(false);
-        frame.setSize(400, 400);
-        frame.setLocation(400, 150);
-        frame.setVisible(true);
+        setSize(400, 400);
+        setLocation(400, 150);
+        setVisible(true);
     }
 
     @Override
@@ -56,5 +58,11 @@ public class Frame implements ActionListener{
 //            userText.setText(username);
 //        }
 
+    }
+
+    public void setRecievedMessage(String message){
+        String temp = displayArea.getText();
+        temp = temp + message;
+        displayArea.setText(temp);
     }
 }
