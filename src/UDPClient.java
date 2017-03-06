@@ -18,22 +18,17 @@ class UDPClient
 
         Scanner input = new Scanner(System.in);
 
-            
-
         while(true) {
             System.out.print("Client message: ");
             String message = input.nextLine();
             System.out.println(message);
 
-
             byte[] buffer = message.getBytes();
             InetAddress receiverAddress = InetAddress.getLocalHost();
 
-            DatagramPacket packet = new DatagramPacket(
-                    buffer, buffer.length, receiverAddress, 80);
+            DatagramPacket packet = new DatagramPacket(buffer, buffer.length, receiverAddress, 80);
 
             datagramSocket.send(packet);
-
 
             byte[] bufferN = new byte[10];
             DatagramPacket packet1 = new DatagramPacket(bufferN, bufferN.length);

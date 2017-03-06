@@ -1,3 +1,5 @@
 #Intellij Files
 .idea/
 assignment-1-NDS.iml
+src/UDPServer.class
+src/UDPClient.class
