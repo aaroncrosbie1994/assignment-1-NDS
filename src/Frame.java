@@ -8,11 +8,14 @@ import java.awt.event.ActionListener;
  * Date: 28/02/2017 ******************
  * Subject: ***********************
  *********************************/
+
 public class Frame implements ActionListener{
+
     JFrame frame = new JFrame();
     JLabel inputLabel = new JLabel();
     JLabel userText = new JLabel();
     JTextArea inputArea = new JTextArea();
+    JTextArea displayArea = new JTextArea();
     JPanel panel = new JPanel();
     JPanel messagePanel = new JPanel();
     JPanel userPanel = new JPanel();
@@ -23,13 +26,16 @@ public class Frame implements ActionListener{
 
         panel.add(new JLabel("Welcome please enter your username"));
 
-
         String username = inputArea.getText();
 
-        UDPCLient client = new UDPClient(username);
+        UDPClient client = new UDPClient();
+        client.setClient(username);
 
+        String message = inputArea.getText();
+        client.getMessage(message);
+
+        panel.add(displayArea);
         panel.add(inputArea);
-        panel.add(messageText);
         frame.add(panel);
         frame.add(messagePanel);
         frame.add(userPanel);
@@ -45,10 +51,10 @@ public class Frame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        if(e.getAction=="Submit"){
-            userText.setText(username);
-        }
+//
+//        if(e.getAction=="Submit"){
+//            userText.setText(username);
+//        }
 
     }
 }

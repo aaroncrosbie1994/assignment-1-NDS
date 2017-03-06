@@ -16,10 +16,8 @@ class UDPClient
 
         DatagramSocket datagramSocket = new DatagramSocket(70);
 
-        Scanner input = new Scanner(System.in);
-
         while(true) {
-
+            //Message input from Frame class by the client to be sent to the pool
 
             byte[] buffer = message.getBytes();
             InetAddress receiverAddress = InetAddress.getLocalHost();
@@ -39,7 +37,11 @@ class UDPClient
 
     public void setClient(String name){
 
-        User user = new User();
+        User user = new User(name);
         user.setUsername(name);
+    }
+
+    public void getMessage(String message){
+        String newMessage = message;
     }
 }
