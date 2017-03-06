@@ -12,12 +12,14 @@ import java.util.Scanner;
 
 class UDPClient
 {
+    static String message = "";
     public static void main(String [] args) throws IOException {
 
         DatagramSocket datagramSocket = new DatagramSocket(70);
 
         while(true) {
             //Message input from Frame class by the client to be sent to the pool
+
 
             byte[] buffer = message.getBytes();
             InetAddress receiverAddress = InetAddress.getLocalHost();
@@ -42,6 +44,6 @@ class UDPClient
     }
 
     public void getMessage(String message){
-        String newMessage = message;
+        this.message = message;
     }
 }
