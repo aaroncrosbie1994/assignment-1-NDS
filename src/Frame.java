@@ -20,7 +20,6 @@ public class Frame extends JFrame implements ActionListener{
     JLabel userText = new JLabel();
     JTextArea inputArea = new JTextArea();
     JTextArea displayArea = new JTextArea();
-
     JButton submit = new JButton("Submit");
     JButton enter = new JButton("Enter");
 
