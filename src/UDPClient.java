@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
 import java.net.DatagramSocket;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
+import java.util.*;
 
 class UDPClient
 {
@@ -25,6 +27,9 @@ class UDPClient
             message = message + "\n Username: " + this.username;
             byte [] buffer = message.getBytes();
             InetAddress receiverAdd = InetAddress.getLocalHost();
+            String ip = receiverAdd.getAddress().toString();
+            //String ip = new String(temp);
+            //System.out.println(java.util.Arrays.toString(buffer));
 
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length, receiverAdd, 80);
             dgs.send(packet);

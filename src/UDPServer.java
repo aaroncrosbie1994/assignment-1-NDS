@@ -46,16 +46,16 @@ class UDPServer extends Thread
             dgs.receive(packet);
             String message = new String(packet.getData(), packet.getOffset(), packet.getLength(), StandardCharsets.UTF_8);
 
-            sendToClients(message);
+            sendToClients(message, dgs);
         }
     }
 
-    public static void sendToClients(String message) throws IOException{
-        //System.out.println(message);
-        DatagramSocket dgs = new DatagramSocket(80);
-        byte [] buffer = message.getBytes();
-        InetAddress recieverAdd = InetAddress.getLocalHost();
-        DatagramPacket packet = new DatagramPacket(buffer, buffer.length, recieverAdd, 70);
-        dgs.send(packet);
+    public static void sendToClients(String message, DatagramSocket dgs) throws IOException{
+        System.out.println(message);
+        //System.out.println(client);
+//        byte [] buffer = message.getBytes();
+//        InetAddress recieverAdd = InetAddress.getLocalHost();
+//        DatagramPacket packet = new DatagramPacket(buffer, buffer.length, recieverAdd, 70);
+//        dgs.send(packet);
     }
 }
