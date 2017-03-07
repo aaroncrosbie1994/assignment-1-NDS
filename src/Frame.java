@@ -9,10 +9,11 @@ import java.awt.event.ActionListener;
  * Subject: ***********************
  *********************************/
 
-public class Frame extends JFrame implements ActionListener{
+public class Frame extends JFrame implements ActionListener {
 
 
-    JPanel panel = new JPanel();
+    JPanel backPanel = new JPanel();
+    JPanel mainPanel = new JPanel();
     JPanel messagePanel = new JPanel();
     JPanel userPanel = new JPanel();
 
@@ -23,35 +24,50 @@ public class Frame extends JFrame implements ActionListener{
     JButton submit = new JButton("Submit");
     JButton enter = new JButton("Enter");
 
-    Frame(){
+    MessageHandler msgh = new MessageHandler("aaron");
 
-        panel.add(new JLabel("Welcome please enter your username"));
+    Frame() {
+        super("Facebook Messanger...");
+        getContentPane().add(backPanel);
+        backPanel.setLayout(new BorderLayout());
+        backPanel.add("Center", mainPanel);
+        mainPanel.setLayout(new GridLayout(3,1));
+        mainPanel.add(displayArea);
+        mainPanel.add(inputArea);
+        mainPanel.add(enter);
 
-        String username = inputArea.getText();
-
-        UDPClient client = new UDPClient();
-        client.setClient(username);
-
-        String message = inputArea.getText();
-        client.getMessage(message);
-
-        panel.add(displayArea);
-        panel.add(inputArea);
-        add(panel);
-        add(messagePanel);
-        add(userPanel);
-
-        panel.setVisible(true);
-
-        messagePanel.setVisible(false);
-        userPanel.setVisible(false);
+        enter.addActionListener(this);
+//        setMessageHandler();
+//        panel.add(new JLabel("Welcome please enter your username"));
+//
+//        String username = inputArea.getText();
+//
+//        msgh = new MessageHandler(username);
+//
+//        String message = inputArea.getText();
+//        msgh.passMessage(message);
+//
+//        panel.add(displayArea);
+//        panel.add(inputArea);
+//        add(panel);
+//        add(messagePanel);
+//        add(userPanel);
+//
+//        panel.setVisible(true);
+//
+//        messagePanel.setVisible(false);
+//        userPanel.setVisible(false);
         setSize(400, 400);
         setLocation(400, 150);
         setVisible(true);
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource() == enter){
+            String message = inputArea.getText();
+            msgh.passMessage(message);
+        }
 //
 //        if(e.getAction=="Submit"){
 //            userText.setText(username);
@@ -59,9 +75,18 @@ public class Frame extends JFrame implements ActionListener{
 
     }
 
-    public void setRecievedMessage(String message){
-        String temp = displayArea.getText();
-        temp = temp + message;
-        displayArea.setText(temp);
+//    public void setRecievedMessage(String message){
+//        String temp = displayArea.getText();
+//        temp = temp + message;
+//        displayArea.setText(temp);
+//    }
+
+//    private void setMessageHandler(){
+//        msgh = new MessageHandler("aaron");
+//    }
+
+    public static void main(String [] args){
+        Frame frame = new Frame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

@@ -28,6 +28,7 @@ class UDPClient
 
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length, receiverAdd, 80);
             dgs.send(packet);
+            dgs.close();
         }
     }
 
