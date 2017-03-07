@@ -50,7 +50,12 @@ class UDPServer extends Thread
         }
     }
 
-    public static void sendToClients(String message){
-        System.out.println(message);
+    public static void sendToClients(String message) throws IOException{
+        //System.out.println(message);
+        DatagramSocket dgs = new DatagramSocket(80);
+        byte [] buffer = message.getBytes();
+        InetAddress recieverAdd = InetAddress.getLocalHost();
+        DatagramPacket packet = new DatagramPacket(buffer, buffer.length, recieverAdd, 70);
+        dgs.send(packet);
     }
 }
